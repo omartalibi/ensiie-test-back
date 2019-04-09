@@ -11,6 +11,11 @@ app
     .post(require('./controller/Jetpack/CreateJetpackController'))
     //.delete(require('./controller/Jetpack/DeleteJetpackController'))
 
+app
+    .route('/availabilities/:id?')
+    .get(require('./controller/Availabilities/GetAvailabilitiesController'))
+    .put(require('./controller/Availabilities/PutAvailabilitiesController'));
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });

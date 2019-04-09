@@ -12,4 +12,11 @@ describe('Jetpack toJson', function () {
             image: "base64..."
         })
     });
+
+    test('Test object creation', () => {
+        let jetpack = new Jetpack();
+        expect(jetpack.id).toBe(null);
+        expect(jetpack.name).toBe(null);
+        expect(jetpack.image).toBe(null);
+    });
 });
