@@ -9,7 +9,9 @@ app
     .route('/jetpacks/:id?')
     .get(require('./controller/Jetpack/GetJetpackController'))
     .post(require('./controller/Jetpack/CreateJetpackController'))
+    //.delete(require('./controller/Jetpack/DeleteJetpackController'))
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });
+
