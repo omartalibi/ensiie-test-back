@@ -88,8 +88,6 @@ describe('Get All', function () {
             expected
         ]);
 
-       
-
         const repository = new Repository(dbMock);
         availabilities = repository.getAvailabilities()
         expect(availabilities.length).toBe(1);
