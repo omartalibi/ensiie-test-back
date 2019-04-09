@@ -22,5 +22,7 @@ module.exports = class {
         return this.db.get('jetpacks').value();
     }
 
-    //
+    getAvailabilities() {
+        return this.db.get('availabilities').value();
+    }
 };
