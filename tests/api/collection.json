@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b63f50c0-87be-4979-abb5-559fb6dd1c11",
+		"_postman_id": "a3f1ff78-e09c-4b32-bf10-d9a73263d75a",
 		"name": "Ensiie Test Back",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -120,6 +120,66 @@
 					],
 					"path": [
 						"jetpacks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Availabilities",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7042ee39-a047-4e08-ac2e-2e6a3453f29a",
+						"exec": [
+							"pm.globals.set('url', 'http://localhost:3000')"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f5b3f3a-7f52-47a8-b9e1-143b9a35f2a2",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Json bdy has information\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(0);",
+							"    //pm.globals.set('jetpack.id', jsonData.id)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"Jet Pack à fusion X98371\",\n\t\"image\": \"Base 64 ...\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/availabilities",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"availabilities"
 					]
 				}
 			},
