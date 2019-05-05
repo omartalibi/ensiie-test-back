@@ -148,4 +148,104 @@ describe('Get All', function () {
 
       
     });
+	
+	test('Test getAvailability(undefined) throws false id', () => {
+        let dbMock = {
+            get:jest.fn(),
+            push:jest.fn(),
+            write:jest.fn()
+        };
+
+        const jetpack = new Jetpack();
+        jetpack.id = "1";
+        jetpack.name = "jetpack";
+        jetpack.image = "123"
+        
+        dbMock.get.mockReturnValue(dbMock);
+        dbMock.push.mockReturnValue(dbMock);
+        dbMock.write.mockReturnValue([
+            jetpack
+        ]);
+
+        const repository = new Repository(dbMock);
+        const empty = new Jetpack();
+        jetpack.id = undefined;
+
+        expect(() => {repository.getAvailability(empty)}).toThrow();
+    });
+
+    test('Test getAvailability index by id', () => {
+        let dbMock = {
+            get:jest.fn(),
+            size:jest.fn(),
+            value:jest.fn()
+        };
+
+        const expected = {
+            jetpack_id:"1",
+            start_date:"2019-04-09T08:37:38.579Z",
+            end_date:"2019-04-09T08:37:38.579Z"
+        }
+
+        dbMock.get.mockReturnValue(dbMock);
+        dbMock.size.mockReturnValue(dbMock);
+        dbMock.value.mockReturnValue([
+            expected
+        ]);
+
+        const repository = new Repository(dbMock);
+        index = repository.getAvailability("1")
+
+        expect(index).toBe(0);
+    });
+
+    test('Test deleteAvailability(undefined) throws false id', () => {
+        let dbMock = {
+            get:jest.fn(),
+            push:jest.fn(),
+            write:jest.fn()
+        };
+
+        const jetpack = new Jetpack();
+        jetpack.id = "1";
+        jetpack.name = "jetpack";
+        jetpack.image = "123"
+        
+        dbMock.get.mockReturnValue(dbMock);
+        dbMock.push.mockReturnValue(dbMock);
+        dbMock.write.mockReturnValue([
+            jetpack
+        ]);
+
+        const repository = new Repository(dbMock);
+        const empty = new Jetpack();
+        jetpack.id = undefined;
+
+        expect(() => {repository.deleteAvailability(empty)}).toThrow();
+    });
+
+    test('Test delete availability by id', () => {
+        let dbMock = {
+            get:jest.fn(),
+            size:jest.fn(),
+            value:jest.fn()
+        };
+
+        const expected = {
+            jetpack_id:"1",
+            start_date:"2019-04-09T08:37:38.579Z",
+            end_date:"2019-04-09T08:37:38.579Z"
+        }
+
+        dbMock.get.mockReturnValue(dbMock);
+        dbMock.size.mockReturnValue(dbMock);
+        dbMock.value.mockReturnValue([
+            expected
+        ]);
+
+        const repository = new Repository(dbMock);
+        
+        expect(repository.deleteAvailability("1").length).toBe(0);
+
+    });
 });
